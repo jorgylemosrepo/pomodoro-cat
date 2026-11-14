@@ -1,0 +1,301 @@
+/* Animações do gatinho (SVG). Cada cena é uma classe s-<nome> no <svg>; cada cena tem seus próprios @keyframes. */
+/* ===== base ===== */
+#cat,#head,#tail{transform-box:view-box}
+#cat{transform-origin:200px 382px}
+#head{transform-origin:200px 250px}
+#tail{transform-origin:280px 372px}
+.f{opacity:0}
+#cup,#hearts,#zzz,#ghost,#tears,#sweat,#bub,#bowl,#grr,#ball,#paw,#hand,#lpaw,#tongue,#vein,#steam,#stink,#flies,#bubbles,.bone,.dry,#food,#water{display:none}
+.tear,#sweat,#bub,#grr,.h,.z,.mo,.bl,.st,.vi,#tongue{transform-box:fill-box;transform-origin:center}
+.rd{opacity:0}
+.st{fill:#fff;stroke:#14213d;stroke-width:3}
+.z{font-weight:800;fill:#5b6fd6}
+.h{fill:#ff5c8a;stroke:#14213d;stroke-width:3;stroke-linejoin:round}
+.s-hungry #bowl,.s-hungry .bone,.s-hungry #grr,.s-hungry #tears{display:inline}
+.s-thirst #bowl,.s-thirst .dry,.s-thirst #sweat{display:inline}
+.s-thirst #bowl>path{fill:#7cc4ea}
+.s-happy #hearts,.s-sleep #zzz,.s-pet #zzz,.s-sleep #bub,.s-dead #ghost,.s-ball #ball,.s-ball #paw,.s-pet #hand{display:inline}
+.s-sleep #zzz{transform:translate(-10px,55px)}
+.s-pet #zzz{transform:translate(30px,0)}
+.s-lick #lpaw,.s-lick #tongue,.s-angry #vein,.s-angry #steam{display:inline}
+.s-eat #bowl,.s-eat #food,.s-drink #bowl,.s-drink #water,.s-drink #tongue{display:inline}
+.s-eat #bowl,.s-drink #bowl{transform:translate(50px,0)}
+.s-drink #bowl>path{fill:#7cc4ea}
+#food,.rp{transform-box:fill-box}
+#food{transform-origin:50% 100%}
+.rp{transform-origin:center;fill:none;stroke:#fff;stroke-width:2}
+
+/* ===== 1. FOME (6s) ===== */
+.s-hungry #cat{animation:hu-cat 6s ease-in-out infinite}
+.s-hungry #head{animation:hu-head 6s ease-in-out infinite}
+.s-hungry #tail{animation:hu-tail 6s ease-in-out infinite}
+.s-hungry .eo,.s-hungry .mh{animation:hu-a 6s infinite}
+.s-hungry .es,.s-hungry .ms{animation:hu-b 6s infinite}
+.s-hungry .tear{animation:hu-tear 6s infinite}
+.s-hungry #grr{animation:hu-grr 6s infinite}
+@keyframes hu-cat{0%,28%{transform:none}38%,90%{transform:scale(1.03,.95)}100%{transform:none}}
+@keyframes hu-head{0%,28%{transform:none}38%,90%{transform:translateY(12px) rotate(-4deg)}100%{transform:none}}
+@keyframes hu-tail{0%,28%{transform:none}38%,90%{transform:rotate(22deg)}100%{transform:none}}
+@keyframes hu-a{0%,28%{opacity:1}34%,94%{opacity:0}100%{opacity:1}}
+@keyframes hu-b{0%,28%{opacity:0}34%,94%{opacity:1}100%{opacity:0}}
+@keyframes hu-tear{0%,38%{opacity:0;transform:none}44%,56%{opacity:1;transform:none}58%{opacity:0;transform:translateY(34px)}60%{opacity:0;transform:none}66%,78%{opacity:1}80%{opacity:0;transform:translateY(34px)}82%{opacity:0;transform:none}88%,96%{opacity:1}98%,100%{opacity:0;transform:translateY(34px)}}
+@keyframes hu-grr{0%,36%{opacity:0;transform:scale(.6)}42%{opacity:1;transform:scale(1.15) rotate(-5deg)}48%{transform:scale(1) rotate(5deg)}54%{transform:rotate(-5deg)}60%{transform:rotate(5deg)}66%{transform:rotate(-5deg)}72%{transform:rotate(5deg)}90%{opacity:1}96%,100%{opacity:0}}
+
+/* ===== 2. FELIZ + CORAÇÕES (2.4s) ===== */
+.s-happy #cat{animation:ha-cat 1.2s ease-in-out infinite}
+.s-happy #head{animation:ha-head 2.4s ease-in-out infinite}
+.s-happy #tail{animation:ha-tail .6s ease-in-out infinite}
+.s-happy .eh,.s-happy .mh{opacity:1}
+.s-happy .h{animation:ha-heart 2.4s ease-out infinite}
+@keyframes ha-cat{0%,100%{transform:scale(1.04,.94)}35%{transform:translateY(-26px) scale(.97,1.05)}70%{transform:scale(1.04,.94)}85%{transform:translateY(-6px)}}
+@keyframes ha-head{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+@keyframes ha-tail{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(16deg)}}
+@keyframes ha-heart{0%{opacity:0;transform:translate(var(--x),20px) scale(.3)}15%{opacity:1}100%{opacity:0;transform:translate(calc(var(--x)*1.2),-90px) scale(1.3)}}
+
+/* ===== 3. SEDE (7s) ===== */
+.s-thirst #cat{animation:th-cat 7s ease-in-out infinite}
+.s-thirst #head{animation:th-head 7s ease-in-out infinite}
+.s-thirst #tail{animation:th-tail 7s ease-in-out infinite}
+.s-thirst .eo,.s-thirst .mh{animation:th-a 7s infinite}
+.s-thirst .es{animation:th-b 7s infinite}
+.s-thirst .mo{animation:th-m 7s infinite}
+.s-thirst #sweat{animation:th-sweat 7s infinite}
+@keyframes th-cat{0%,28%{transform:none}38%,90%{transform:scale(1.02,.96)}100%{transform:none}}
+@keyframes th-head{0%,28%{transform:none}38%,90%{transform:translateY(10px) rotate(4deg)}100%{transform:none}}
+@keyframes th-tail{0%,28%{transform:none}38%,90%{transform:rotate(-8deg)}100%{transform:none}}
+@keyframes th-a{0%,28%{opacity:1}34%,94%{opacity:0}100%{opacity:1}}
+@keyframes th-b{0%,28%{opacity:0}34%,94%{opacity:1}100%{opacity:0}}
+@keyframes th-m{0%,28%{opacity:0;transform:scaleY(.7)}34%{opacity:1;transform:scaleY(1)}42%{transform:scaleY(.6)}50%{transform:scaleY(1)}58%{transform:scaleY(.6)}66%{transform:scaleY(1)}74%{transform:scaleY(.6)}82%{transform:scaleY(1)}94%{opacity:1;transform:scaleY(.8)}100%{opacity:0}}
+@keyframes th-sweat{0%,40%{opacity:0;transform:none}44%{opacity:1;transform:none}56%{opacity:0;transform:translateY(40px)}58%{opacity:0;transform:none}70%{opacity:1}82%{opacity:0;transform:translateY(40px)}100%{opacity:0}}
+
+/* ===== 4. MORTE FOFA (10s) ===== */
+.s-dead #cat{animation:de-cat 10s ease-in-out infinite}
+.s-dead .eo,.s-dead .mh{animation:de-a 10s infinite}
+.s-dead .es,.s-dead .ms{animation:de-b 10s infinite}
+.s-dead .ex,.s-dead .mf{animation:de-c 10s infinite}
+.s-dead #ghost{animation:de-ghost 10s ease-in-out infinite}
+@keyframes de-cat{0%{transform:none}18%{transform:scale(1.03,.95)}30%{transform:rotate(-7deg) scale(1.03,.95)}40%{transform:rotate(7deg) scale(1.03,.95)}52%{transform:rotate(0) scale(1.03,.9)}58%{transform:scale(1.28,.38)}64%,93%{transform:scale(1.2,.5)}100%{transform:none}}
+@keyframes de-a{0%,8%{opacity:1}12%,96%{opacity:0}100%{opacity:1}}
+@keyframes de-b{0%,8%{opacity:0}12%,50%{opacity:1}54%,100%{opacity:0}}
+@keyframes de-c{0%,52%{opacity:0}56%,94%{opacity:1}98%,100%{opacity:0}}
+@keyframes de-ghost{0%,56%{opacity:0;transform:translate(200px,300px)}62%{opacity:1;transform:translate(200px,270px)}72%{transform:translate(222px,200px)}82%{transform:translate(184px,120px)}92%{opacity:1;transform:translate(205px,30px)}97%,100%{opacity:0;transform:translate(205px,10px)}}
+
+/* ===== 5. DORMINDO (4s) ===== */
+.s-sleep #cat{animation:sl-cat 4s ease-in-out infinite}
+.s-sleep #head{animation:sl-head 4s ease-in-out infinite}
+.s-sleep #tail{animation:sl-tail 4s ease-in-out infinite}
+.s-sleep .ez,.s-sleep .mf{opacity:1}
+.s-sleep .z{animation:sl-z 3.6s ease-out infinite}
+.s-sleep #bub{animation:sl-bub 4s ease-in-out infinite}
+@keyframes sl-cat{0%,100%{transform:scale(1.12,.8)}50%{transform:scale(1.13,.83)}}
+@keyframes sl-head{0%,100%{transform:translateY(16px) rotate(7deg)}50%{transform:translateY(18px) rotate(6deg)}}
+@keyframes sl-tail{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(4deg)}}
+@keyframes sl-z{0%{opacity:0;transform:translate(0,20px) scale(.5)}20%{opacity:1}100%{opacity:0;transform:translate(40px,-70px) scale(1.3)}}
+@keyframes sl-bub{0%,100%{transform:scale(.2)}50%{transform:scale(1.5)}}
+
+/* ===== 6. DEITADO COM A BOLINHA (6s) ===== */
+.s-ball #cat{animation:bl-cat 6s ease-in-out infinite}
+.s-ball #head{animation:bl-head 6s ease-in-out infinite}
+.s-ball #tail{animation:bl-tail .8s ease-in-out infinite}
+.s-ball .eo{opacity:1;animation:bl-eyes 6s ease-in-out infinite}
+.s-ball .mh{opacity:1}
+.s-ball #ball{animation:bl-ball 6s ease-in-out infinite}
+.s-ball .bs{animation:bl-roll 6s linear infinite}
+.s-ball #paw{animation:bl-paw 6s ease-in-out infinite}
+@keyframes bl-cat{0%,100%{transform:scale(1.1,.8)}50%{transform:scale(1.1,.82)}}
+@keyframes bl-head{0%,100%{transform:translateY(10px) rotate(8deg)}30%{transform:translateY(10px) rotate(-2deg)}50%{transform:translateY(10px) rotate(6deg)}75%{transform:translateY(10px) rotate(-2deg)}}
+@keyframes bl-tail{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(14deg)}}
+@keyframes bl-eyes{0%,100%{transform:translate(10px,0)}30%{transform:translate(-2px,2px)}50%{transform:translate(8px,0)}75%{transform:translate(-2px,2px)}}
+@keyframes bl-ball{0%,100%{transform:translate(415px,360px)}22%{transform:translate(335px,360px)}30%{transform:translate(318px,360px)}42%{transform:translate(380px,310px)}54%{transform:translate(425px,360px)}75%{transform:translate(340px,360px)}82%{transform:translate(318px,360px)}92%{transform:translate(380px,320px)}}
+@keyframes bl-roll{from{transform:rotate(0)}to{transform:rotate(-720deg)}}
+@keyframes bl-paw{0%,22%,38%,74%,90%,100%{transform:translate(268px,366px) rotate(0)}30%,82%{transform:translate(302px,352px) rotate(-15deg)}}
+
+/* ===== 7. CARINHO + ZZZ (3s) ===== */
+.s-pet #cat{animation:pe-cat 1.8s ease-in-out infinite}
+.s-pet #head{animation:pe-head 1.1s ease-in-out infinite alternate}
+.s-pet #tail{animation:pe-tail .7s ease-in-out infinite}
+.s-pet .eh,.s-pet .mh{opacity:1}
+.s-pet #hand{animation:pe-hand 1.1s ease-in-out infinite alternate}
+.s-pet .bl{animation:pe-blush 1.1s ease-in-out infinite alternate}
+.s-pet .z{animation:pe-z 3s ease-out infinite}
+@keyframes pe-cat{0%,100%{transform:scale(1.02,.96)}50%{transform:scale(1.01,.98)}}
+@keyframes pe-head{from{transform:translateY(8px) rotate(-4deg) scale(1.02,.95)}to{transform:translateY(8px) rotate(4deg) scale(1.02,.95)}}
+@keyframes pe-tail{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(18deg)}}
+@keyframes pe-hand{from{transform:translate(165px,74px) rotate(-6deg)}to{transform:translate(235px,74px) rotate(6deg)}}
+@keyframes pe-blush{from{opacity:.5}to{opacity:1}}
+@keyframes pe-z{0%{opacity:0;transform:translate(0,20px) scale(.5)}20%{opacity:1}100%{opacity:0;transform:translate(44px,-80px) scale(1.3)}}
+/* ===== 8. LAMBENDO A PATINHA (5s) ===== */
+.s-lick #cat{animation:li-cat 5s ease-in-out infinite}
+.s-lick #head{animation:li-head 5s ease-in-out infinite}
+.s-lick #tail{animation:li-tail 2.5s ease-in-out infinite}
+.s-lick .ez,.s-lick .mh{opacity:1}
+.s-lick #lpaw{animation:li-paw 5s ease-in-out infinite}
+.s-lick #tongue{animation:li-tongue 5s ease-in-out infinite}
+@keyframes li-cat{0%,100%{transform:none}14%,84%{transform:rotate(-1.5deg)}}
+@keyframes li-head{0%,100%{transform:none}12%{transform:rotate(-6deg) translateY(4px)}26%{transform:rotate(-9deg) translateY(6px)}34%{transform:rotate(-6deg) translateY(4px)}42%{transform:rotate(-9deg) translateY(6px)}50%{transform:rotate(-6deg) translateY(4px)}58%{transform:rotate(-9deg) translateY(6px)}66%{transform:rotate(-6deg) translateY(4px)}74%{transform:rotate(-9deg) translateY(6px)}84%{transform:rotate(-6deg) translateY(4px)}94%{transform:none}}
+@keyframes li-tail{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(6deg)}}
+@keyframes li-paw{0%{opacity:0;transform:translate(172px,290px) rotate(-5deg)}10%{opacity:1;transform:translate(172px,262px) rotate(-12deg)}18%,34%,50%,66%{opacity:1;transform:translate(172px,234px) rotate(-18deg)}26%,42%,58%,74%{opacity:1;transform:translate(174px,230px) rotate(-14deg)}82%{opacity:1;transform:translate(172px,240px) rotate(-16deg)}92%{opacity:1;transform:translate(172px,275px) rotate(-8deg)}100%{opacity:0;transform:translate(172px,290px) rotate(-5deg)}}
+@keyframes li-tongue{0%,16%{opacity:0;transform:scale(.4)}22%{opacity:1;transform:scale(1)}30%{opacity:0;transform:scale(.4)}38%{opacity:1;transform:scale(1)}46%{opacity:0;transform:scale(.4)}54%{opacity:1;transform:scale(1)}62%{opacity:0;transform:scale(.4)}70%{opacity:1;transform:scale(1)}78%,100%{opacity:0;transform:scale(.4)}}
+
+/* ===== 9. COM RAIVINHA (4s) ===== */
+.s-angry #cat{animation:an-cat 4s ease-in-out infinite}
+.s-angry #head{animation:an-head 4s ease-in-out infinite}
+.s-angry #tail{animation:an-tail .3s ease-in-out infinite alternate}
+.s-angry .eo,.s-angry .mf{animation:an-a 4s infinite}
+.s-angry .ea,.s-angry .ma{animation:an-b 4s infinite}
+.s-angry .rd{animation:an-red 4s ease-in-out infinite}
+.s-angry .vi{animation:an-vein 4s ease-in-out infinite}
+.s-angry .st{animation:an-steam 1s ease-out infinite}
+@keyframes an-cat{0%{transform:none}16%{transform:scale(1.03,.95)}22%{transform:translateY(-14px)}28%{transform:scale(1.05,.93)}40%{transform:translateY(-14px)}46%{transform:scale(1.05,.93)}58%{transform:translateY(-14px)}64%{transform:scale(1.05,.93)}72%,92%{transform:scale(1.03,.95)}100%{transform:none}}
+@keyframes an-head{0%,14%,58%,100%{transform:none}18%,26%,34%,42%,50%{transform:translateX(-5px) rotate(-2deg)}22%,30%,38%,46%,54%{transform:translateX(5px) rotate(2deg)}}
+@keyframes an-tail{from{transform:rotate(-18deg)}to{transform:rotate(22deg)}}
+@keyframes an-a{0%,12%{opacity:1}16%,94%{opacity:0}100%{opacity:1}}
+@keyframes an-b{0%,12%{opacity:0}16%,94%{opacity:1}100%{opacity:0}}
+@keyframes an-red{0%,12%{opacity:0}28%,48%,68%{opacity:.55}38%,58%{opacity:.35}90%{opacity:.5}100%{opacity:0}}
+@keyframes an-vein{0%,14%{opacity:0;transform:scale(.3)}20%,36%,52%,68%{opacity:1;transform:scale(1.3)}28%,44%,60%,76%{transform:scale(.9)}90%{opacity:1;transform:scale(1.1)}96%,100%{opacity:0;transform:scale(.3)}}
+@keyframes an-steam{0%{opacity:0;transform:translateY(8px) scale(.4)}30%{opacity:1}100%{opacity:0;transform:translateY(-34px) scale(1.4)}}
+
+/* ===== 10. COMENDO A COMIDINHA (6s) ===== */
+.s-eat #cat{animation:co-cat 6s ease-in-out infinite}
+.s-eat #head{animation:co-head 6s ease-in-out infinite}
+.s-eat #tail{animation:co-tail .5s ease-in-out infinite alternate}
+.s-eat .eo{animation:co-a 6s infinite}
+.s-eat .eh{animation:co-b 6s infinite}
+.s-eat .mh{animation:co-mh 6s infinite}
+.s-eat .mo{animation:co-mo 6s infinite}
+.s-eat #food{animation:co-food 6s ease-in-out infinite}
+@keyframes co-cat{0%,10%,100%{transform:none}20%,88%{transform:scale(1.03,.97)}}
+@keyframes co-head{0%,10%,100%{transform:none}20%,32%,44%,56%,68%,80%,88%{transform:translate(-72px,120px) rotate(-8deg)}26%,38%,50%,62%,74%{transform:translate(-72px,108px) rotate(-8deg)}}
+@keyframes co-tail{from{transform:rotate(-8deg)}to{transform:rotate(14deg)}}
+@keyframes co-a{0%,12%{opacity:1}18%,92%{opacity:0}96%,100%{opacity:1}}
+@keyframes co-b{0%,12%{opacity:0}18%,92%{opacity:1}96%,100%{opacity:0}}
+@keyframes co-mh{0%,14%{opacity:1}16%,88%{opacity:0}92%,100%{opacity:1}}
+@keyframes co-mo{0%,16%{opacity:0;transform:scaleY(.7)}20%,32%,44%,56%,68%,80%{opacity:1;transform:scaleY(1)}26%,38%,50%,62%,74%{opacity:1;transform:scaleY(.5)}88%{opacity:1;transform:scaleY(.8)}92%,100%{opacity:0}}
+@keyframes co-food{0%,20%{opacity:1;transform:scaleY(1)}88%{opacity:1;transform:scaleY(.12)}94%{opacity:0;transform:scaleY(.12)}99%{opacity:0;transform:scaleY(1)}100%{opacity:1;transform:scaleY(1)}}
+
+/* ===== 11. TOMANDO ÁGUA (6s) ===== */
+.s-drink #cat{animation:be-cat 6s ease-in-out infinite}
+.s-drink #head{animation:be-head 6s ease-in-out infinite}
+.s-drink #tail{animation:be-tail 3s ease-in-out infinite}
+.s-drink .eo,.s-drink .mh{animation:be-a 6s infinite}
+.s-drink .ez,.s-drink .mf{animation:be-b 6s infinite}
+.s-drink #tongue{animation:be-tongue 6s ease-in-out infinite}
+.s-drink .rp{animation:be-ripple 1s ease-out infinite}
+@keyframes be-cat{0%,10%,100%{transform:none}20%,90%{transform:scale(1.02,.97)}}
+@keyframes be-head{0%,10%,100%{transform:none}20%,36%,52%,68%,84%,90%{transform:translate(-72px,116px) rotate(-8deg)}28%,44%,60%,76%{transform:translate(-72px,112px) rotate(-8deg)}}
+@keyframes be-tail{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(8deg)}}
+@keyframes be-a{0%,12%{opacity:1}16%,90%{opacity:0}94%,100%{opacity:1}}
+@keyframes be-b{0%,12%{opacity:0}16%,90%{opacity:1}94%,100%{opacity:0}}
+@keyframes be-tongue{0%,18%,92%,100%{opacity:0;transform:translateY(0) scale(.5)}22%,38%,54%,70%,86%{opacity:1;transform:translateY(16px) scale(1.2)}30%,46%,62%,78%{opacity:1;transform:translateY(2px) scale(.7)}}
+@keyframes be-ripple{0%{opacity:1;transform:scale(.3)}100%{opacity:0;transform:scale(1.5)}}
+
+/* ===== 12. PARADO / IDLE (4s) ===== */
+.eo{transform-box:fill-box;transform-origin:center}
+.s-idle #cat{animation:id-breathe 4s ease-in-out infinite}
+.s-idle #tail{animation:id-tail 3s ease-in-out infinite}
+.s-idle .eo,.s-idle .mh{opacity:1}
+.s-idle .eo{animation:id-blink 5s infinite}
+@keyframes id-breathe{0%,100%{transform:none}50%{transform:scale(1.01,1.02)}}
+@keyframes id-tail{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(6deg)}}
+@keyframes id-blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+
+/* ===== 13. SOLITÁRIO / PRECISA DE CARINHO (4s) ===== */
+.s-sad #cat{animation:sa-cat 4s ease-in-out infinite}
+.s-sad #head{transform:translateY(12px) rotate(-4deg)}
+.s-sad #tail{transform:rotate(22deg)}
+.s-sad .es,.s-sad .ms{opacity:1}
+.s-sad #tears{display:inline}
+.s-sad .tear{animation:sa-tear 2.4s ease-in infinite}
+.s-sad .tear:last-child{animation-delay:.6s}
+@keyframes sa-cat{0%,100%{transform:scale(1.03,.95)}50%{transform:scale(1.03,.96)}}
+@keyframes sa-tear{0%{opacity:0;transform:none}20%,80%{opacity:1}100%{opacity:0;transform:translateY(34px)}}
+
+/* ===== 14. ENTEDIADO / QUER BRINCAR (2s) ===== */
+.s-bored #ball{display:inline;animation:bo-ball 2s ease-in-out infinite}
+.s-bored .bs{animation:bl-roll 6s linear infinite}
+.s-bored #head{animation:bo-head 2s ease-in-out infinite}
+.s-bored #tail{animation:bo-tail 1.2s ease-in-out infinite}
+.s-bored .eo{opacity:1;transform:translate(10px,-3px)}
+.s-bored .mf{opacity:1}
+@keyframes bo-ball{0%,100%{transform:translate(400px,362px)}50%{transform:translate(400px,320px)}}
+@keyframes bo-head{0%,100%{transform:rotate(0)}50%{transform:rotate(5deg)}}
+@keyframes bo-tail{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(16deg)}}
+
+/* ===== 15. MORTO (fica assim até reviver) ===== */
+.s-rip #cat{transform:scale(1.2,.5)}
+.s-rip .ex,.s-rip .mf{opacity:1}
+.s-rip #ghost{display:inline;animation:rip-ghost 3s ease-in-out infinite}
+@keyframes rip-ghost{0%,100%{transform:translate(205px,50px)}50%{transform:translate(205px,38px)}}
+
+/* ===== COR DO PELO (definida em Gatinho.Wardrobe.apply via variáveis --coat e --ear) ===== */
+.coat { fill: var(--coat, #fff6e3); }
+.coat-stroke { stroke: var(--coat, #fff6e3); }
+.ear-in { fill: var(--ear, #f26b4f); }
+
+/* ===== 16. SUJO / CAIXINHA SUJA (3s) ===== */
+.sk { opacity: 0; }
+.fl { transform-box: view-box; transform-origin: 200px 80px; }
+.bb { transform-box: fill-box; transform-origin: center; }
+.s-dirty #stink, .s-dirty #flies { display: inline; }
+.s-dirty #cat { animation: di-itch 1.2s ease-in-out infinite; }
+.s-dirty #head { transform: translateY(8px) rotate(3deg); }
+.s-dirty .es, .s-dirty .ms { opacity: 1; }
+.s-dirty .wv { animation: di-stink 2s ease-in-out infinite; }
+.s-dirty .wv:nth-child(2) { animation-delay: .5s; }
+.s-dirty .wv:nth-child(3) { animation-delay: 1s; }
+.s-dirty .wv:nth-child(4) { animation-delay: 1.5s; }
+.s-dirty .fl { animation: di-fly 2.2s linear infinite; }
+.s-dirty .fl:nth-child(2) { animation-duration: 1.7s; animation-direction: reverse; }
+@keyframes di-itch { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-1.5deg); } 75% { transform: rotate(1.5deg); } }
+@keyframes di-stink { 0% { opacity: 0; transform: translateY(10px); } 40% { opacity: .9; } 100% { opacity: 0; transform: translateY(-28px); } }
+@keyframes di-fly { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+/* ===== 17. LIMPANDO (5s) ===== */
+.s-clean #bubbles { display: inline; }
+.s-clean #cat { animation: cl-cat 1s ease-in-out infinite; }
+.s-clean .eh, .s-clean .mh { opacity: 1; }
+.s-clean .bb { animation: cl-bubble 1.8s ease-out infinite; }
+.s-clean .bb:nth-child(2) { animation-delay: .3s; }
+.s-clean .bb:nth-child(3) { animation-delay: .6s; }
+.s-clean .bb:nth-child(4) { animation-delay: .9s; }
+.s-clean .bb:nth-child(5) { animation-delay: 1.2s; }
+@keyframes cl-cat { 0%, 100% { transform: scale(1.03, .96); } 50% { transform: translateY(-8px) scale(.98, 1.03); } }
+@keyframes cl-bubble { 0% { opacity: 0; transform: translateY(0) scale(.4); } 20% { opacity: 1; } 100% { opacity: 0; transform: translateY(-160px) scale(1.2); } }
+
+/* ===== 18. DOENTE (3s) ===== */
+.s-sick #cat { animation: sk-cat 3s ease-in-out infinite; }
+.s-sick #head { animation: sk-shiver .25s linear infinite alternate; }
+.s-sick #tail { transform: rotate(20deg); }
+.s-sick .es, .s-sick .ms { opacity: 1; }
+.s-sick .sk { animation: sk-tint 3s ease-in-out infinite; }
+.s-sick #sweat { display: inline; animation: sk-sweat 2s ease-in infinite; }
+@keyframes sk-cat { 0%, 100% { transform: scale(1.02, .96); } 50% { transform: scale(1.02, .95); } }
+@keyframes sk-shiver { from { transform: translate(-2px, 6px); } to { transform: translate(2px, 6px); } }
+@keyframes sk-tint { 0%, 100% { opacity: .25; } 50% { opacity: .45; } }
+@keyframes sk-sweat { 0% { opacity: 0; transform: none; } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(36px); } }
+
+/* ===== 19. CANSADO (4s): olhos pesados, olheiras e um bocejo ===== */
+.bs { transform-box: fill-box; transform-origin: center; }
+.s-tired #cat { animation: ti-cat 4s ease-in-out infinite; }
+.s-tired #head { animation: ti-head 4s ease-in-out infinite; }
+.s-tired #tail { transform: rotate(18deg); }
+.s-tired .et, .s-tired .eb { opacity: 1; }
+.s-tired .mf { animation: ti-mouth 4s infinite; }
+.s-tired .mo { animation: ti-yawn 4s infinite; }
+@keyframes ti-cat { 0%, 100% { transform: scale(1.02, .96); } 50% { transform: scale(1.02, .95); } }
+@keyframes ti-head { 0%, 100% { transform: translateY(10px) rotate(5deg); } 40% { transform: translateY(14px) rotate(-3deg); } 55%, 75% { transform: translateY(0) rotate(-7deg); } }
+@keyframes ti-mouth { 0%, 50% { opacity: 1; } 55%, 78% { opacity: 0; } 82%, 100% { opacity: 1; } }
+@keyframes ti-yawn { 0%, 52% { opacity: 0; transform: scaleY(.5); } 60%, 72% { opacity: 1; transform: scaleY(1.2); } 80%, 100% { opacity: 0; } }
+
+/* ===== 20. CAFÉ NA PAUSA (6s): ergue a xícara e dá um golinho ===== */
+.s-coffee #cup { display: inline; animation: cf-cup 6s ease-in-out infinite; }
+.s-coffee .steam path { animation: cf-steam 2s ease-in-out infinite; }
+.s-coffee .steam path:nth-child(2) { animation-delay: .5s; }
+.s-coffee .steam path:nth-child(3) { animation-delay: 1s; }
+.s-coffee #head { animation: cf-head 6s ease-in-out infinite; }
+.s-coffee #tail { animation: cf-tail 3s ease-in-out infinite; }
+.s-coffee .ez, .s-coffee .mh { opacity: 1; }
+@keyframes cf-cup { 0%, 35%, 100% { transform: translateY(0); } 50%, 70% { transform: translateY(-34px); } 85% { transform: translateY(0); } }
+@keyframes cf-head { 0%, 35%, 100% { transform: none; } 50%, 70% { transform: translateY(-2px) rotate(-6deg); } 85% { transform: none; } }
+@keyframes cf-tail { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(8deg); } }
+@keyframes cf-steam { 0% { opacity: 0; transform: translateY(8px); } 40% { opacity: .9; } 100% { opacity: 0; transform: translateY(-14px); } }

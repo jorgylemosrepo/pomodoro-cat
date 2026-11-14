@@ -1,0 +1,112 @@
+{
+  "name": "gatinho-pomodoro",
+  "version": "1.0.0",
+  "description": "Pomodoro gamificado com um gatinho",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron . --ozone-platform=x11",
+    "test": "node tests/simulate.js && node tests/progress.js && node tests/life.js && node tests/ambient.js && node tests/economy.js && node tests/scenery.js && node tests/extras.js && node tests/music.js && node tests/electron.js && node tests/updates.js && node tests/build.js",
+    "test:page": "node tests/page-shop.js && node tests/page-life.js && node tests/page-setup.js && node tests/page-music.js && node tests/page-look.js && node tests/page-world.js && node tests/page-update.js",
+    "dev": "electron . --ozone-platform=x11",
+    "version:set": "node scripts/set-version.js",
+    "pack": "electron-builder --dir --publish never",
+    "dist:win": "electron-builder --win nsis portable --x64 --publish never",
+    "dist:win:installer": "electron-builder --win nsis --x64 --publish never",
+    "dist:win:portable": "electron-builder --win portable --x64 --publish never",
+    "dist:linux": "electron-builder --linux AppImage deb rpm --x64 --publish never",
+    "dist:linux:installer": "electron-builder --linux deb rpm --x64 --publish never",
+    "dist:linux:portable": "electron-builder --linux AppImage --x64 --publish never"
+  },
+  "devDependencies": {
+    "electron": "^44.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "author": {
+    "name": "Gatinho Pomodoro",
+    "email": "gatinho-pomodoro@users.noreply.github.com"
+  },
+  "homepage": "https://github.com/SEU-USUARIO/gatinho-pomodoro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SEU-USUARIO/gatinho-pomodoro.git"
+  },
+  "build": {
+    "appId": "com.gatinho.pomodoro",
+    "productName": "Gatinho Pomodoro",
+    "copyright": "Gatinho Pomodoro",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "index.html",
+      "css/**/*",
+      "js/**/*",
+      "data/**/*",
+      "electron/**/*",
+      "build/icon.png",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "deleteAppDataOnUninstall": false,
+      "artifactName": "GatinhoPomodoro-${version}-win-${arch}-Setup.${ext}"
+    },
+    "portable": {
+      "artifactName": "GatinhoPomodoro-${version}-win-${arch}-Portable.${ext}"
+    },
+    "linux": {
+      "icon": "build/icon.png",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "rpm",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Utility",
+      "synopsis": "Pomodoro gamificado com um gatinho",
+      "executableName": "gatinho-pomodoro",
+      "executableArgs": [
+        "--ozone-platform=x11"
+      ],
+      "artifactName": "GatinhoPomodoro-${version}-linux-${arch}.${ext}"
+    }
+  },
+  "desktopName": "gatinho-pomodoro.desktop"
+}

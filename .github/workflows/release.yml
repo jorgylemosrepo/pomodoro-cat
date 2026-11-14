@@ -1,0 +1,49 @@
+# Gera os instaladores e as versões portáteis (Windows e Linux) e publica numa Release do GitHub.
+# Como usar: pnpm version:set 1.2.3 && git commit -am "v1.2.3" && git tag v1.2.3 && git push --follow-tags
+# O botão de atualização do app olha a última Release deste repositório.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            script: dist:linux
+          - os: windows-latest
+            script: dist:win
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Conferir que a versão do package.json é a da tag
+        shell: bash
+        run: test "v$(node -p "require('./package.json').version")" = "${{ github.ref_name }}"
+
+      - name: Ferramenta de pacote .rpm (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y rpm
+
+      - run: npm install
+      - run: npm run ${{ matrix.script }}
+
+      - name: Publicar na Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.exe
+            dist/*.AppImage
+            dist/*.deb
+            dist/*.rpm

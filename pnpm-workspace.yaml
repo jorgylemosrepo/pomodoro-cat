@@ -1,0 +1,5 @@
+# Quais dependências podem rodar script de instalação (o pnpm 11 e mais novos exigem uma decisão para cada uma).
+# O campo "pnpm" do package.json não é mais lido: a configuração fica aqui.
+allowBuilds:
+  electron: true            # baixa o programa do Electron
+  electron-winstaller: false # só serve para instaladores Squirrel (Windows); usamos NSIS e portátil

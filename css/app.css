@@ -1,0 +1,194 @@
+/* Layout e tema da janela. As animações do gatinho ficam em cat.css. */
+
+:root {
+  --stage-sky: #ffe9cf;
+  --stage-floor: #f6cfa3;
+  --bg: #fdf3e7;
+  --fg: #14213d;
+  --surface: #ffffff;
+  --muted: #5b6177;
+  --line: #e6d6c2;
+  --accent: #f26b4f;
+  --ok: #5cc98b;
+  --warn: #f5b942;
+  --crit: #ef5b5b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1d2b;
+    --fg: #f3ecdf;
+    --surface: #2a2d42;
+    --muted: #a3a8c0;
+    --line: #3b3f5c;
+    --stage-sky: #272a44;
+    --stage-floor: #32365a;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.3 "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+}
+
+/* ---------- Estrutura ---------- */
+
+.app {
+  background: var(--bg);
+  color: var(--fg);
+  width: 100%;
+  max-width: 340px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.landing { display: none; padding: 24px; text-align: center; }
+.is-floating .landing { display: block; }
+
+.top { display: flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 700; }
+.top__record { color: var(--muted); }
+
+/* ---------- Palco do gatinho ---------- */
+
+.stage {
+  position: relative;
+  height: 170px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--stage-sky); /* o cenário em SVG cobre tudo; isto só aparece por um instante */
+}
+.stage svg { display: block; width: 100%; height: 100%; }
+
+.stage__bubble {
+  position: absolute;
+  top: 6px;
+  right: 76px;
+  font-size: 1.6rem;
+  animation: bubble-pop 1s ease-in-out infinite;
+}
+@keyframes bubble-pop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.message { margin: 0; min-height: 2.6em; text-align: center; font-weight: 500; }
+
+/* ---------- Necessidades ---------- */
+
+.needs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; }
+.need { display: flex; align-items: center; gap: 6px; }
+.need__bar { flex: 1; height: 8px; overflow: hidden; border-radius: 99px; background: var(--line); }
+.need__bar i {
+  display: block;
+  height: 100%;
+  width: var(--v);
+  border-radius: inherit;
+  background: var(--ok);
+  transition: width 0.4s, background 0.4s;
+}
+.need[data-level="warn"] i { background: var(--warn); }
+.need[data-level="crit"] i { background: var(--crit); }
+
+/* ---------- Timer ---------- */
+
+.timer { padding: 8px 10px; border-radius: 14px; background: var(--surface); }
+.timer__clock { font-size: 2.2rem; font-weight: 700; line-height: 1; text-align: center; font-variant-numeric: tabular-nums; }
+.timer__label { margin-bottom: 6px; overflow: hidden; text-align: center; color: var(--muted); white-space: nowrap; text-overflow: ellipsis; }
+.timer__form, .timer__row { display: flex; gap: 6px; }
+.timer__row { margin-top: 6px; }
+.timer__row .btn { flex: 1; }
+
+.field {
+  min-width: 0;
+  padding: 6px 8px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: inherit;
+  font: inherit;
+}
+.field--grow { flex: 1; }
+.field--minutes { width: 58px; text-align: center; }
+.field:focus { outline: none; border-color: var(--accent); }
+
+/* ---------- Botões ---------- */
+
+.btn {
+  padding: 6px 10px;
+  border: 2px solid var(--fg);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--fg);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn:hover:not(:disabled) { filter: brightness(0.95); }
+.btn--primary { border-color: var(--accent); background: var(--accent); color: #fff; }
+.btn--small { padding: 2px 10px; font-size: 0.85rem; }
+
+.actions { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 4px; }
+.btn--action { display: flex; flex-direction: column; align-items: center; padding: 4px 0; font-size: 0.72rem; }
+.btn__icon { font-size: 1.3rem; line-height: 1.2; }
+
+/* ---- Cabeçalho, céu e doença ---- */
+.top__name { max-width: 92px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.top__right { display: flex; gap: 4px; margin-left: auto; }
+.stage { --stage-ink: #14213d; --stage-btn: #fff; }
+.stage[data-tone="dark"] { --stage-ink: #f3ecdf; --stage-btn: #2a2d42; }
+.stage[data-tone="dark"] #cat-wrap { filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7)); } /* contorno escuro some em fundo escuro */
+
+
+.need--sick { grid-column: 1 / -1; justify-content: center; color: var(--crit); font-weight: 700; }
+
+/* ---- Gênero no nome e tela de escolha do felino ---- */
+.top__name[data-gender="m"]::before { content: "♂ "; color: #4aa3e8; }
+.top__name[data-gender="f"]::before { content: "♀ "; color: #e85d9b; }
+
+.setup { position: absolute; inset: 0; z-index: 30; display: grid; place-items: center; padding: 12px; background: var(--bg); }
+.setup__card { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
+.setup__cat { font-size: 3.4rem; line-height: 1; }
+.setup__card h2 { margin: 0; font-size: 1.2rem; text-align: center; }
+.setup__hint { margin: 0; color: var(--muted); text-align: center; }
+.setup__genders { display: flex; gap: 10px; }
+.gender { min-width: 112px; padding: 10px 14px; font-size: 1rem; }
+.gender span { font-size: 1.3rem; }
+.gender[data-gender="m"][aria-pressed="true"] { border-color: #4aa3e8; background: #4aa3e8; }
+.gender[data-gender="f"][aria-pressed="true"] { border-color: #e85d9b; background: #e85d9b; }
+.setup__name { display: flex; gap: 6px; width: 100%; }
+.setup__actions { display: flex; gap: 8px; }
+.setup .note { min-height: 1.3em; }
+
+/* ---- Cenário: luz, edição de móveis, sujeirinhas, tira de cenários ---- */
+.stage[data-lights="off"] #cat-wrap { filter: brightness(.62) drop-shadow(0 0 2px rgba(255, 255, 255, 0.5)); }
+.stage__light { position: absolute; left: 8px; bottom: 8px; z-index: 2; }
+.stage.is-editing #cat-wrap { pointer-events: none; }
+.fur-hit { fill: transparent; pointer-events: all; cursor: grab; }
+.tf-box { fill: rgba(124, 108, 255, 0.08); stroke: var(--accent); stroke-width: 2; stroke-dasharray: 6 4; pointer-events: none; }
+.tf-handle { fill: #fff; stroke: var(--accent); stroke-width: 2; cursor: not-allowed; }
+.tf-lock circle { fill: #fff; stroke: var(--accent); stroke-width: 2; }
+.tf-lock rect { fill: var(--accent); }
+.tf-lock path { stroke: var(--accent); stroke-width: 2; }
+.dirt { animation: dirt-in 0.6s ease-out; }
+@keyframes dirt-in { from { opacity: 0; } to { opacity: 1; } }
+
+.strip { display: flex; align-items: center; gap: 4px; height: 34px; }
+.strip__list { display: flex; flex: 1; gap: 6px; padding: 2px; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; }
+.strip__item { flex: none; width: 30px; height: 30px; padding: 0; overflow: hidden; border: 2px solid var(--line); border-radius: 8px; background: none; cursor: pointer; }
+.strip__item[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.strip__arrow { flex: none; width: 22px; height: 30px; border: 0; border-radius: 8px; background: var(--surface); color: var(--fg); cursor: pointer; }
+.strip__edit { flex: none; }
+
+.btn--action { position: relative; }
+.btn__count { position: absolute; top: -6px; right: -3px; min-width: 16px; padding: 0 3px; border-radius: 99px; background: var(--accent); color: #fff; font: 700 10px/16px sans-serif; font-style: normal; text-align: center; }
+.btn__count.is-empty { background: var(--crit); }
+.habit { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 6px; padding: 6px 8px; border-radius: 10px; background: var(--bg); font-size: 0.85rem; }
