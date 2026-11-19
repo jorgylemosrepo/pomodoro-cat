@@ -128,6 +128,15 @@ Gatinho.UI = class UI {
       el.bubble.textContent = bubble;
     });
 
+    // progresso do timer (barra sob o relógio) e modo (foco/pausa) para o tema do cartão
+    const total = pomodoro.totalSec || 0;
+    const progress = state === 'idle' || !total ? 0 : Math.round((1 - pomodoro.remaining() / total) * 1000) / 10;
+    this._set('progress', progress, (v) => {
+      el.timer.style.setProperty('--p', `${v}%`);
+      el.progress.setAttribute('aria-valuenow', Math.round(v));
+    });
+    this._set('mode', pomodoro.mode, (v) => (root.dataset.mode = v));
+
     const clock = this._format(state === 'idle' ? this._minutes() * 60 : pomodoro.remaining());
     this._set('clock', clock, () => (el.clock.textContent = clock));
     this._set('title', state === 'idle' ? 'Gatinho Pomodoro' : `${clock} · Gatinho`, (v) => (document.title = v));
@@ -161,6 +170,8 @@ Gatinho.UI = class UI {
       actionButtons: Object.fromEntries(Object.keys(Gatinho.CONFIG.actions).map((key) => [key, this.$(`[data-action="${key}"]`)])),
       message: this.$('#message'),
       bubble: this.$('#bubble'),
+      timer: this.$('.timer'),
+      progress: this.$('.timer__progress'),
       clock: this.$('#clock'),
       label: this.$('#timer-label'),
       actions: this.$('#actions'),

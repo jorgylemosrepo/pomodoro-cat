@@ -20,12 +20,12 @@
 
     <header class="top">
       <span id="cat-name" class="top__name">Gatinho</span>
-      <span title="Pontos">⭐ <b id="score">0</b></span>
-      <span class="top__record" title="Recorde">🏆 <b id="record">0</b></span>
-      <span title="Moedas">🪙 <b id="coins">0</b></span>
+      <span class="stat" title="Pontos"><i class="stat__ico" aria-hidden="true">⭐</i><b id="score">0</b></span>
+      <span class="stat stat--muted" title="Recorde"><i class="stat__ico" aria-hidden="true">🏆</i><b id="record">0</b></span>
+      <span class="stat" title="Moedas"><i class="stat__ico" aria-hidden="true">🪙</i><b id="coins">0</b></span>
       <span class="top__right">
-        <button type="button" class="btn btn--icon" data-panel="update" title="Atualizações" aria-pressed="false">🔄<i class="badge" hidden></i></button>
-        <button type="button" class="btn btn--icon top__pin" data-command="pin" title="Fixar acima das outras janelas">📌</button>
+        <button type="button" class="btn btn--icon" data-panel="update" title="Atualizações" aria-label="Atualizações" aria-pressed="false">🔄<i class="badge" hidden></i></button>
+        <button type="button" class="btn btn--icon top__pin" data-command="pin" title="Fixar acima das outras janelas" aria-label="Fixar acima das outras janelas">📌</button>
       </span>
     </header>
 
@@ -128,6 +128,7 @@
     <section class="timer" aria-label="Timer pomodoro">
       <div id="clock" class="timer__clock">25:00</div>
       <div id="timer-label" class="timer__label"></div>
+      <div class="timer__progress" role="progressbar" aria-label="Progresso do foco" aria-valuemin="0" aria-valuemax="100"><i></i></div>
 
       <form id="timer-form" class="timer__form" data-when="idle">
         <input id="task" class="field field--grow" type="text" maxlength="60" placeholder="O que vai fazer?" autocomplete="off">
