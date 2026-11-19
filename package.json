@@ -1,6 +1,6 @@
 {
   "name": "gatinho-pomodoro",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Pomodoro gamificado com um gatinho",
   "main": "electron/main.js",
   "scripts": {
