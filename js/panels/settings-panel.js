@@ -38,7 +38,13 @@ Gatinho.SettingsPanel = {
       actions.setSoundVolume(Number(event.target.value));
       save?.();
     }); // sem redesenhar: não atrapalha o arrasto
-    $('#set-test').addEventListener('click', () => actions.testSound());
+    $('#set-test').addEventListener('click', () => {
+      const feedback = actions.testSound();
+      if (typeof feedback === 'string') {
+        this.note = feedback;
+        refresh();
+      }
+    });
     $('#set-notify').addEventListener('change', async (event) => { this.note = await actions.setNotifications(event.target.checked); refresh(); });
     wrap.addEventListener('click', (event) => {
       const button = event.target.closest('[data-difficulty]');
