@@ -5,7 +5,7 @@ Gatinho.SettingsPanel = {
   title: 'Configurações',
   note: '',
 
-  render(body, { profile, actions, refresh }) {
+  render(body, { profile, actions, refresh, save }) {
     const { html, CONFIG, Notify } = Gatinho;
     const s = profile.settings;
     const wrap = document.createElement('div');
@@ -34,7 +34,10 @@ Gatinho.SettingsPanel = {
 
     const $ = (selector) => wrap.querySelector(selector);
     $('#set-sound').addEventListener('change', (event) => { actions.setSound(event.target.checked); refresh(); });
-    $('#set-volume').addEventListener('input', (event) => actions.setSoundVolume(Number(event.target.value))); // sem redesenhar: não atrapalha o arrasto
+    $('#set-volume').addEventListener('input', (event) => {
+      actions.setSoundVolume(Number(event.target.value));
+      save?.();
+    }); // sem redesenhar: não atrapalha o arrasto
     $('#set-test').addEventListener('click', () => actions.testSound());
     $('#set-notify').addEventListener('change', async (event) => { this.note = await actions.setNotifications(event.target.checked); refresh(); });
     wrap.addEventListener('click', (event) => {
