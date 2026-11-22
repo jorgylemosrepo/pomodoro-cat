@@ -31,6 +31,7 @@ Gatinho.SettingsPanel = {
           <label class="btn btn--small">Importar<input type="file" id="set-import" accept=".json,application/json" hidden></label></div>
         <small>Guarda tudo (gatinho, moedas, loja, conquistas) num arquivo. Importar substitui o progresso atual.</small>
       </div>`;
+    this.note = '';
 
     const $ = (selector) => wrap.querySelector(selector);
     $('#set-sound').addEventListener('change', (event) => { actions.setSound(event.target.checked); refresh(); });
