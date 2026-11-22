@@ -30,8 +30,7 @@
   const currentScene = () => lookup(profile.equipped.scene) ?? lookup(CONFIG.defaultScene);
 
   /** Decide o que o gatinho está sentindo agora: cena, fala e ícone do balão. */
-  function status() {
-    const now = Date.now();
+  function status(now = Date.now()) {
     if (!pet.alive) return { scene: 'rip', message: '{O} {gatinho} virou um anjinho… 😿', bubble: '' };
     if (ambient.lightsOff(now)) return { scene: 'sleep', message: 'Zzz… dormindo 🌙', bubble: '' };
     if (pet.sick) return { scene: 'sick', message: 'Não estou me sentindo bem… 🤒', bubble: '🤒' };
@@ -426,19 +425,19 @@
   }
 
   /** De tempos em tempos (e sem depender do timer) o gatinho faz uma gracinha. Dormindo, não. */
-  function maybeIdleFlavor(seconds) {
+  function maybeIdleFlavor(seconds, now = Date.now()) {
     secondsToFlavor -= seconds;
     if (secondsToFlavor > 0 || !pet.life.adopted) return;
     secondsToFlavor = nextFlavorDelay();
-    if (status().scene === 'idle' && !animator.busy && !ambient.sleeping()) animator.play([random.pick(CONFIG.idleFlavor.scenes)]);
+    if (status(now).scene === 'idle' && !animator.busy && !ambient.sleeping(now)) animator.play([random.pick(CONFIG.idleFlavor.scenes)]);
   }
-
+  
   function nextRareDelay() {
     return random.between(CONFIG.rareEvent.minSeconds, CONFIG.rareEvent.maxSeconds);
   }
 
   /** De tempos em tempos acontece um evento raro (data/rare-events.js). Dormindo a noite inteira, não. */
-  function maybeRareEvent(seconds) {
+  function maybeRareEvent(seconds, now = Date.now()) {
     secondsToRare -= seconds;
     if (secondsToRare > 0 || !pet.alive || !pet.life.adopted || ambient.sleeping()) return;
     secondsToRare = nextRareDelay();
