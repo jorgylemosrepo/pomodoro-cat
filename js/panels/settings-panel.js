@@ -52,7 +52,11 @@ Gatinho.SettingsPanel = {
     $('#set-import').addEventListener('change', async (event) => {
       const file = event.target.files?.[0];
       if (!file) return;
-      this.note = actions.importBackup(await file.text());
+      try {
+        this.note = actions.importBackup(await file.text());
+      } finally {
+        event.target.value = '';
+      }
       refresh();
     });
     body.append(wrap);
