@@ -42,7 +42,11 @@ Gatinho.SettingsPanel = {
     $('#set-notify').addEventListener('change', async (event) => { this.note = await actions.setNotifications(event.target.checked); refresh(); });
     wrap.addEventListener('click', (event) => {
       const button = event.target.closest('[data-difficulty]');
-      if (button) { actions.setDifficulty(button.dataset.difficulty); this.note = ''; }
+      if (button) {
+        const result = actions.setDifficulty(button.dataset.difficulty);
+        this.note = typeof result === 'string' ? result : '';
+        refresh();
+      }
     });
     $('#set-export').addEventListener('click', () => { this.note = actions.exportBackup(); refresh(); });
     $('#set-import').addEventListener('change', async (event) => {
