@@ -30,15 +30,15 @@ Gatinho.Animator = class Animator {
   }
 
   _next() {
-    const step = this.queue.shift();
-    this.busy = Boolean(step);
-    if (!step) {
-      this._show(this.resolveBase());
-      return;
+      const step = this.queue.shift();
+      if (!step) {
+        this.busy = false;
+        this._show(this.resolveBase(), true);
+        return;
+      }
+      this._show(step.scene, true);
+      this.timer = setTimeout(() => this._next(), step.ms);
     }
-    this._show(step.scene, true);
-    this.timer = setTimeout(() => this._next(), step.ms);
-  }
 
   _show(scene, restart = false) {
     if (this.current === scene && !restart) return;
