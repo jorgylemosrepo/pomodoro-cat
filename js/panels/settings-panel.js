@@ -45,7 +45,16 @@ Gatinho.SettingsPanel = {
         refresh();
       }
     });
-    $('#set-notify').addEventListener('change', async (event) => { this.note = await actions.setNotifications(event.target.checked); refresh(); });
+    $('#set-notify').addEventListener('change', async (event) => {
+      const input = event.currentTarget;
+      input.disabled = true;
+      try {
+        this.note = await actions.setNotifications(input.checked);
+      } finally {
+        input.disabled = !Notify.supported;
+      }
+      refresh();
+    });
     wrap.addEventListener('click', (event) => {
       const button = event.target.closest('[data-difficulty]');
       if (button) {
