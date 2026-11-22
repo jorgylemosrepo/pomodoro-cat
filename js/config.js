@@ -8,7 +8,7 @@ window.Gatinho = window.Gatinho || {};
 
 Gatinho.CONFIG = {
   storageKey: 'gatinho-pomodoro:v1',
-  version: '1.0.0', // igual ao "version" do package.json ("pnpm version:set 1.2.3" muda os dois; um teste confere)
+  version: '1.1.1', // igual ao "version" do package.json ("pnpm version:set 1.2.3" muda os dois; um teste confere)
   defaultCoat: 'coat_cream', // cor inicial (grátis); ver data/items.js
   defaultTheme: 'theme_default', // tema da janela inicial (grátis, segue o claro/escuro do sistema)
   defaultScene: 'scene_room',    // cenário inicial (grátis, acompanha as cores do tema)
