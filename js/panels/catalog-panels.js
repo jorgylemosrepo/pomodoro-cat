@@ -21,7 +21,7 @@
         // suprimentos aparecem no inventário mesmo sem "posse": mostram o estoque
         const items = ITEMS.filter((item) => item.slot === this.slot && (mode === 'shop' || item.slot === 'supply' || profile.owns(item.id)));
 
-        const supplyKey = (item) => Object.keys(item.grants)[0];
+        const supplyKey = (item) => Object.keys(item.grants ?? {})[0];
         const button = (item) => {
           if (item.slot === 'supply') {
             if (mode === 'inventory') return '';
