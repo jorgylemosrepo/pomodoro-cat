@@ -53,7 +53,10 @@ Gatinho.SettingsPanel = {
       const file = event.target.files?.[0];
       if (!file) return;
       try {
-        this.note = actions.importBackup(await file.text());
+        const content = await file.text();
+        this.note = actions.importBackup(content);
+      } catch {
+        this.note = 'Não foi possível ler o arquivo de backup.';
       } finally {
         event.target.value = '';
       }
